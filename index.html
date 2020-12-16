@@ -19,7 +19,7 @@
              integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" 
               crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<style type="text/css">
 
 		/*** To show on small size screen only
@@ -60,50 +60,58 @@
   background: #55ACEE;
   color: white;
 }
-	</style> */
+	</style> 
 </head>
 
 <body>
 	<h3>Whatsapp sharing</h3>
+	<form>
 
-	<input class="mobileShow"
-		type="text" name="message"><br>
+	<textarea name="message" id="message"></textarea><br>
 		
-        <button type="button" onclick="shareWhatsApp()" class="btn btn-whatsapp"><i class="fa fa-whatsapp"></i> Share</button>
+        <button type="button" id="whatsapp" class="btn btn-whatsapp"><i class="fa fa-whatsapp"></i> Share</button>
+       
+        
 
-<button type="button" onclick="shareFacebook()" class="btn btn-facebook"><i class="fa fa-facebook"></i> Share 
+<button type="button" id="facebook" class="btn btn-facebook"><i class="fa fa-facebook"></i> Share 
 </button>
 
 
 <!-- Your share button code -->
 
-<button type="button" onclick="shareTwitter()" class="btn btn-twitter"><i class="fa fa-twitter"></i> Share</button>
+<button type="button" id="twitter" class="btn btn-twitter"><i class="fa fa-twitter"></i> Share</button>
 
-	
+	</form>
 	
 	
 
 	<script type="text/javascript">
-	
-			// Getting user input
-			
-	var message = $("input[name=message]").val();
-          
-          function shareFacebook() {
+	$(document).ready(function () {
 
+
+  // Your code
+   
+			// Getting user input
+	
+          
+          $('#facebook').on('click', function () {
+            var message = document.getElementById('message').value;
+              //alert(message);
 			// Opening URL
-   			alert(message);
+   			//alert(message);
 			window.open(
-			"https://www.facebook.com/sharer/sharer.php?u=github.com/AlhassanSadiq/socialshare/&quote=" + message,
+			"https://www.facebook.com/sharer/sharer.php?u=" + window.location.href + "&quote=" + message,
 			'_blank'
 				
 			);
 			
-		}
+		});
+		
 
 		// Function to share on whatsapp
-		function shareWhatsApp() {
-
+	$('#whatsapp').on('click', function () {
+	    var message = document.getElementById('message').value;
+              //      alert(message);
 			// Opening URL
    			
 			window.open(
@@ -114,8 +122,29 @@
 				'_blank'
 			);
 			
-		}
+		});
+  $('#twitter').on('click', function () {
+    var message = document.getElementById('message').value;
+			// Opening URL
+   			
+			window.open(
+				"twitter://post?message=" + message,
+
+				// This is what makes it
+				// open in a new window.
+				'_blank'
+			);
+			
+		});
+		
+});
 	</script>
 </body>
 
 </html>
+
+
+
+
+
+
